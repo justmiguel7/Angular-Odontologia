@@ -1,0 +1,99 @@
+/* --- Estilos generales --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #242424;
+  color: white;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* --- Logo --- */
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* --- Links --- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-links li a:hover {
+  color: #00c3ff;
+}
+
+/* --- Botón Login --- */
+.btn-login {
+  background: #00c3ff;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.btn-login:hover {
+  background: #009ed3;
+}
+
+/* --- Botón menú (mobile) --- */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-btn .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    flex-direction: column;
+    background-color: #242424;
+    width: 200px;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .nav-links.active {
+    height: auto;
+    padding: 10px 0;
+    opacity: 1;
+  }
+
+  .nav-links li {
+    text-align: center;
+    margin: 10px 0;
+  }
+}

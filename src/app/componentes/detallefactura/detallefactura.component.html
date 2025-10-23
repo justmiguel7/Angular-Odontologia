@@ -1,0 +1,25 @@
+detallefactura:
+
+<table class="table"  >
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">facturaID</th>
+      <th scope="col">tartamiento_id</th>
+      <th scope="col">cantidad</th>
+      <th scope="col">subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let detalleF of detallefact; index as i; first as isFirst">
+       <td>{{detalleF.id}}</td>
+      <td>{{detalleF.facturaID}}</td>
+      <td>{{detalleF.tartamiento_id}}</td>
+      <td>{{detalleF.cantidad}}</td>
+      <td>{{detalleF.subtotal}}</td>
+
+
+    </tr>
+  </tbody>
+</table>
+

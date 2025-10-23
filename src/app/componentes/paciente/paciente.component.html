@@ -1,0 +1,35 @@
+paciente:
+
+<table class="table"  >
+  <thead>
+    <tr>
+      <th scope="col">idpaciente</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">dni</th>
+      <th scope="col">telefono</th>
+      <th scope="col">email</th>
+      <th scope="col">fechaingreso</th>
+      <th scope="col">fecharegistro</th>
+ 
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let paciente of pacientes; index as i; first as isFirst">
+       <td>{{paciente.idpaciente}}</td>     
+      <td>{{paciente.nombre}}</td>
+      <td>{{paciente.apellido}}</td>
+      <td>{{paciente.direccion}}</td>
+      <td>{{paciente.dni}}</td>
+      <td>{{paciente.telefono}}</td>
+      <td>{{paciente.email}}</td>
+      <td>{{paciente.fechaingreso}}</td>
+      <td>{{paciente.fecharegistro}}</td>
+
+
+    </tr>
+  </tbody>
+</table>
+

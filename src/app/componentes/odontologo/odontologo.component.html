@@ -1,0 +1,35 @@
+odontologo:
+
+<table class="table"  >
+  <thead>
+    <tr>
+      <th scope="col">idodontologo</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Especializacion</th>
+      <th scope="col">Matricula</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Email</th>
+      <th scope="col">fechaRegistro</th>
+ 
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let odontologo of odontologos; index as i; first as isFirst">
+       <td>{{odontologo.idodontologo}}</td>     
+      <td>{{odontologo.nombre}}</td>
+      <td>{{odontologo.apellido}}</td>
+      <td>{{odontologo.codigo}}</td>
+      <td>{{odontologo.especializacion}}</td>
+      <td>{{odontologo.matricula}}</td>
+      <td>{{odontologo.telefono}}</td>
+      <td>{{odontologo.email}}</td>
+      <td>{{odontologo.fecharegistro}}</td>
+
+
+    </tr>
+  </tbody>
+</table>
+

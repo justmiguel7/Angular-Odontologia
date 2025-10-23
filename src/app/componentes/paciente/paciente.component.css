@@ -1,0 +1,72 @@
+/* Estilo general de la tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Encabezado */
+.table thead {
+  background-color: #007bff; /* azul bonito */
+  color: white;
+  text-align: left;
+}
+
+.table thead th {
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Cuerpo de la tabla */
+.table tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Filas alternadas */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover sobre la fila */
+.table tbody tr:hover {
+  background-color: #f1f5f9;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Última fila sin borde */
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Opcional: centrado para columnas numéricas */
+.table tbody td:first-child,
+.table tbody td:nth-child(5),
+.table tbody td:nth-child(6) {
+  text-align: center;
+}
+
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+  .table tbody td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 120px;
+  }
+}
