@@ -7,11 +7,12 @@ import { OdontologoComponent } from "./componentes/odontologo/odontologo.compone
 import { NavbarComponent } from "./componentes/navbar/navbar";
 import { Footer } from './componentes/footer/footer';
 import { Admincards } from "./componentes/admincards/admincards";
+import { Carousel } from './componentes/carousel/carousel';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, PacienteComponent, Login, OdontologoComponent, NavbarComponent, Footer, Admincards],
+  imports: [CommonModule, RouterModule, RouterOutlet, PacienteComponent, Login, OdontologoComponent, NavbarComponent, Footer, Admincards, Carousel],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

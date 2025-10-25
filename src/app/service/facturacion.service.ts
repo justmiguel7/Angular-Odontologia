@@ -13,7 +13,7 @@ import { Facturacion } from '../modelo/Facturacion';
 export class FacturacionService {
   constructor(public http: HttpClient) { }
 
-    private urlFacturacion = 'http://localhost:8086/facturacion';
+    private urlFacturacion = 'http://localhost:8082/facturacion';
 
 
       listarFacturaciones(): Observable<Facturacion[]> {    // Endpoint de la API

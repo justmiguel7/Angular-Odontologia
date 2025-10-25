@@ -8,7 +8,47 @@
   </button>
 
   <ul [class.active]="menuAbierto" class="nav-links">
-    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-    <li><a routerLink="/login" routerLinkActive="active" class="btn-login">Login</a></li>
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
+
+    <!-- Si NO está logueado -->
+    <ng-container *ngIf="!isLogged">
+      <li><a routerLink="/register" routerLinkActive="active">Primera consulta</a></li>
+      <li><button class="btn-login" (click)="abrirModalLogin()">Login</button></li>
+    </ng-container>
+
+    <!-- Si está logueado -->
+    <ng-container *ngIf="isLogged">
+
+      <!-- Paciente -->
+      <ng-container *ngIf="rol === 'PACIENTE'">
+        <li><a routerLink="/turno">Reservar turno</a></li>
+        <li><a [routerLink]="['/historial-clinico', obtenerDni()]">Historial clínico</a></li>
+        <li><button (click)="logout()">Cerrar sesión</button></li>
+      </ng-container>
+
+      <!-- Odontólogo -->
+      <ng-container *ngIf="rol === 'ODONTOLOGO'">
+        <li><a routerLink="/reservar-turno">Reservar turno</a></li>
+        <li><a routerLink="/confirmar-turno">Confirmar turno</a></li>
+        <li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>
+        <li><button (click)="logout()">Cerrar sesión</button></li>
+      </ng-container>
+
+      <!-- Administrador -->
+      <ng-container *ngIf="rol === 'ADMINISTRADOR'">
+        <li><a routerLink="/dashboard-admin">Dashboard</a></li>
+        <li><button (click)="logout()">Cerrar sesión</button></li>
+      </ng-container>
+
+    </ng-container>
+
   </ul>
 </nav>
+
+<!-- Modal -->
+<div class="modal" *ngIf="modalLoginAbierto">
+  <div class="modal-content">
+    <span class="close" (click)="cerrarModalLogin()">&times;</span>
+    <app-login (loginSuccess)="cerrarModalLogin()"></app-login>
+  </div>
+</div>

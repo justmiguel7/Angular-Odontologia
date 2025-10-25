@@ -1,1 +1,25 @@
-<p>turno works!</p>
+turno:
+
+<table class="table"  >
+  <thead>
+    <tr>
+      <th scope="col">PacienteID</th>
+      <th scope="col">OdontologoID</th>
+      <th scope="col">Fecha y Hora</th>
+      <th scope="col">Estado</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let turno of turnos; index as i; first as isFirst">
+      <td>{{turno.dnipaciente}}</td>
+      <td>{{turno.dniodontologo}}</td>
+      <td>{{turno.fechaYHora | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+      <td>{{turno.estado}}</td>
+
+
+    </tr>
+  </tbody>
+</table>
+

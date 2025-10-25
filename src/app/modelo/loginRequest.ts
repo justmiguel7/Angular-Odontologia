@@ -1,6 +1,6 @@
 export class loginRequest{
 
-    constructor(public correo :string ,public  contrasena : string ){
+    constructor(public username :string ,public  password : string ){
 
     }
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TurnoComponent } from './turno.component';
+import { HistorialclinicoComponent } from './historialclinico.component';
 
-describe('Turno', () => {
-  let component: TurnoComponent;
-  let fixture: ComponentFixture<TurnoComponent>;
+describe('Historialclinico', () => {
+  let component: HistorialclinicoComponent;
+  let fixture: ComponentFixture<HistorialclinicoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TurnoComponent]
+      imports: [HistorialclinicoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TurnoComponent);
+    fixture = TestBed.createComponent(HistorialclinicoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,7 +3,7 @@ odontologo:
 <table class="table"  >
   <thead>
     <tr>
-      <th scope="col">idodontologo</th>
+      <th scope="col">OdontologoID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Apellido</th>
       <th scope="col">Codigo</th>
@@ -11,14 +11,14 @@ odontologo:
       <th scope="col">Matricula</th>
       <th scope="col">Telefono</th>
       <th scope="col">Email</th>
-      <th scope="col">fechaRegistro</th>
- 
+      <th scope="col">Fecha Registro</th>
+
 
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let odontologo of odontologos; index as i; first as isFirst">
-       <td>{{odontologo.idodontologo}}</td>     
+       <td>{{odontologo.idodontologo}}</td>
       <td>{{odontologo.nombre}}</td>
       <td>{{odontologo.apellido}}</td>
       <td>{{odontologo.codigo}}</td>
