@@ -7,6 +7,10 @@
 </head>
 <body>
 	<div class="main">
+<!--
+
+registrarse
+
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">
@@ -20,21 +24,26 @@
 				</form>
 			</div>
 
+-->
+
 			<div class="login">
-				<form [formGroup]="loginForm" >
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required=""  formControlName="email" [class.is-invalid]="emailNoValido()">
-					 <span *ngIf="emailNoValido()" class="invalid-feedback">
-                       Email es requerido
-                     </span>
-					<input type="password" name="pswd" placeholder="Password" required=""   formControlName="password" [class.is-invalid]="passwordNoValido()"  >
-						 <span *ngIf="passwordNoValido()" class="invalid-feedback">
-                       		Password no Valido
-                     	</span>
-					<button   [disabled]="loginForm.invalid" (click)="login()" >Login</button>
-				</form>
+<form [formGroup]="loginForm">
+  <label for="chk" aria-hidden="true">Login</label>
+  <input type="email" placeholder="Email" formControlName="email" [class.is-invalid]="emailNoValido()">
+  <span *ngIf="emailNoValido()" class="invalid-feedback">
+    Email es requerido
+  </span>
+  <input type="password" placeholder="Password" formControlName="password" [class.is-invalid]="passwordNoValido()">
+  <span *ngIf="passwordNoValido()" class="invalid-feedback">
+    Password no válido
+  </span>
+  <button type="button" [disabled]="loginForm.invalid" (click)="login($event)">Login</button>
+</form>
+
 			</div>
+
+<a>¿No tenes cuenta? registrate aca</a>
 	</div>
 </body>
 
-{{ loginForm.value | json }}
+<!--{{ loginForm.value | json }}-->

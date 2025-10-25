@@ -1,32 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Paciente } from '../modelo/Paciente';
- import { map , delay } from 'rxjs/operators';
-  import { loginResponse } from '../modelo/loginResponse';
-
- import { loginRequest } from '../modelo/loginRequest';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { loginRequest } from '../modelo/loginRequest';
+import { loginResponse } from '../modelo/loginResponse';
+import { RegistroPacienteDTO } from '../modelo/RegistroPacienteDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-    constructor(private http: HttpClient) { }
+  private baseUrl = 'http://localhost:8085/auth'; // endpoint de Spring Security
+
+  private bffUrl = 'http://localhost:8080/usuarios'; // endpoint de Spring Security
 
 
-  private urlUsuario = 'http://localhost:8085/usuarios';
+  constructor(private http: HttpClient) { }
 
+  login(req: loginRequest): Observable<loginResponse> {
+    return this.http.post<loginResponse>(`${this.baseUrl}/login`, req)
+      .pipe(map(resp => resp));
+  }
 
- login( loginRequest : loginRequest): Observable<loginResponse> {
-
- const headers = new HttpHeaders();
-
-return this.http.post<loginResponse>("http://localhost:8085/usuarios/login", loginRequest)
-  .pipe(
-    map((resp: loginResponse) => {
-      return resp;
-    })
-  );
- }
+ registrarPaciente(dto: RegistroPacienteDTO): Observable<string> {
+    // ✅ importante: el backend devuelve texto (ResponseEntity<String>)
+    return this.http.post(`${this.bffUrl}/registrar`, dto, { responseType: 'text' });
+  }
 }

@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2>Reservar Turno</h2>
+
+  <form (ngSubmit)="reservarTurno()">
+
+    <!-- DNI del paciente
+    <div class="form-group">
+      <label for="dnipaciente">DNI Paciente:</label>
+      <input
+        type="text"
+        id="dnipaciente"
+        [(ngModel)]="turno.dnipaciente"
+        name="dnipaciente"
+        class="form-control"
+        required
+        placeholder="Ingrese el DNI del paciente"
+      >
+    </div>
+-->
+
+<!-- DNI paciente (solo mostrar) -->
+<div class="form-group">
+  <label for="dnipaciente">DNI Paciente:</label>
+  <input type="text" [value]="turno.dnipaciente" class="form-control" disabled>
+</div>
+
+
+
+    <!-- Fecha y hora -->
+<div class="form-group mt-3">
+  <label for="fechaYHora">Fecha y Hora:</label>
+  <input
+    type="datetime-local"
+    id="fechaYHora"
+    [(ngModel)]="turno.fechaYHora"
+    name="fechaYHora"
+    class="form-control"
+    [min]="minFecha"
+    (change)="validarFechaHora()"
+    required
+  >
+</div>
+
+
+
+
+    <!-- Botón -->
+    <button type="submit" class="btn btn-primary mt-4">
+      Reservar Turno
+    </button>
+  </form>
+
+
+</div>
