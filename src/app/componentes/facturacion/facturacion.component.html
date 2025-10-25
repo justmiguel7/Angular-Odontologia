@@ -3,24 +3,24 @@ Facturacion:
 <table class="table"  >
   <thead>
     <tr>
-      <th scope="col">idfactura</th>
-      <th scope="col">idpaciente</th>
-      <th scope="col">montototal</th>
-      <th scope="col">fechaemision</th>
-      <th scope="col">metodopago</th>
-     
- 
+      <th scope="col">FacturaID</th>
+      <th scope="col">PacienteID</th>
+      <th scope="col">Monto Total</th>
+      <th scope="col">Fecha emision</th>
+      <th scope="col">Metodo Pago</th>
+
+
 
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let Facturacion of facturaciones; index as i; first as isFirst">
-       <td>{{Facturacion.idfactura}}</td>     
+       <td>{{Facturacion.idfactura}}</td>
       <td>{{Facturacion.idpaciente}}</td>
       <td>{{Facturacion.montototal}}</td>
       <td>{{Facturacion.fechaemision}}</td>
       <td>{{Facturacion.metodopago}}</td>
-      
+
 
     </tr>
   </tbody>

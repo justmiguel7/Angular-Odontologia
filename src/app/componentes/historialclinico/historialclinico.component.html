@@ -1,0 +1,38 @@
+historial clinico:
+
+<table class="table"  >
+  <thead>
+    <tr>
+      <th scope="col">HistorialID</th>
+      <th scope="col">PacienteID</th>
+      <th scope="col">OdontologoID</th>
+      <th scope="col">TratamientoID</th>
+      <th scope="col">Motivo consulta</th>
+      <th scope="col">Fecha consulta</th>
+      <th scope="col">Diagnostico</th>
+      <th scope="col">Observaciones</th>
+      <th scope="col">Alergias</th>
+      <th scope="col">Antecedentes Medicos</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let historial of historialclinico; index as i; first as isFirst">
+       <td>{{historial.idhistorial}}</td>
+      <td>{{historial.idpaciente}}</td>
+      <td>{{historial.idodontologo}}</td>
+      <td>{{historial.idtratamiento}}</td>
+      <td>{{historial.motivodeconsulta}}</td>
+      <td>{{historial.fechadeconsulta}}</td>
+      <td>{{historial.diagnostico}}</td>
+      <td>{{historial.observaciones}}</td>
+      <td>{{historial.alergias}}</td>
+      <td>{{historial.antecedentesmedicos}}</td>
+
+
+
+    </tr>
+  </tbody>
+</table>
+
