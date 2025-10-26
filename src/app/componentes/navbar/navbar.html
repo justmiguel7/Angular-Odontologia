@@ -31,6 +31,7 @@
       <ng-container *ngIf="rol === 'ODONTOLOGO'">
         <li><a routerLink="/reservar-turno">Reservar turno</a></li>
         <li><a routerLink="/confirmar-turno">Confirmar turno</a></li>
+                <li><a routerLink="/agregar-historial">Agregar al historial clinico</a></li>
         <li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>
         <li><button (click)="logout()">Cerrar sesión</button></li>
       </ng-container>

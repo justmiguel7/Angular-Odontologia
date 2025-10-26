@@ -10,6 +10,7 @@ import { Register } from './register/register';
 import { TurnoPacienteComponent } from './componentes/turnopaciente/turnopaciente.component';
 import { Plandental } from './componentes/plandental/plandental';
 import { TurnoOdontologoComponent } from './componentes/turnoodontologo/turnoodontologo.component';
+import { AgregarHistorial } from './componentes/agregar-historial/agregar-historial';
 
 export const routes: Routes = [
   { path: '', component: Carousel },
@@ -22,6 +23,8 @@ export const routes: Routes = [
       {path: 'plandental', component: Plandental},
         { path: 'reservar-turno', component: TurnoOdontologoComponent },
   { path: 'detallefactura', component: DetallefacturaComponent },
+    { path: 'agregar-historial', component: AgregarHistorial },
+
   {
     path: 'dashboard-admin',
     component: Admincards,

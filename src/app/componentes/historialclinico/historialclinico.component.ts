@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HistorialClinicoService } from '../../service/historialclinico.service';
-import { HistorialClinico } from '../../modelo/HistorialClinico';
-
+import { HistorialClinico } from '../../modelo/Historial-Clinico';
 @Component({
   selector: 'app-historialclinico',
   standalone: true,

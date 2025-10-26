@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Turno } from '../modelo/Turno';
- import { map , delay } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class TurnoService {
+  private urlTurno = 'http://localhost:8084/turno';
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    private urlTurno = 'http://localhost:8084/turno';
-
-
-      listarTurnos(): Observable<Turno[]> {    // Endpoint de la API
+  // Listar todos los turnos
+  listarTurnos(): Observable<Turno[]> {
     return this.http.get<Turno[]>(`${this.urlTurno}/listado`);
- }
+  }
+
+  // Listar turnos filtrados por DNI del odontólogo
+  listarPorDniOdontologo(dni: string): Observable<Turno[]> {
+    return this.http.get<Turno[]>(`${this.urlTurno}/odontologo/${dni}`);
+  }
 }

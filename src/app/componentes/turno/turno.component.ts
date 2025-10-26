@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TurnoService } from '../../service/turno.service';
 import { Turno } from '../../modelo/Turno';
@@ -8,9 +8,9 @@ import { Turno } from '../../modelo/Turno';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './turno.component.html',
-  styleUrl: './turno.component.css'
+  styleUrls: ['./turno.component.css']
 })
-export class TurnoComponent {
+export class TurnoComponent implements OnInit {
   turnos: Turno[] = [];
 
   constructor(private servicio: TurnoService) {}
@@ -19,13 +19,17 @@ export class TurnoComponent {
     this.listarTurnos();
   }
 
-listarTurnos() {
-  this.servicio.listarTurnos().subscribe((datos) => {
-    console.log('Datos crudos que llegan:', datos);
-    this.turnos = datos.map(turno => ({
-      ...turno,
-      fechaYHora: new Date(turno.fechaYHora)
-    }));
-  });
-}
+  listarTurnos(): void {
+    const dni = '12345678'; // ejemplo, o sacalo del AuthService
+    this.servicio.listarPorDniOdontologo(dni).subscribe({
+      next: (datos: Turno[]) => {
+        console.log('Datos crudos que llegan:', datos);
+        this.turnos = datos.map((turno: Turno) => ({
+          ...turno,
+          fechaYHora: new Date(turno.fechaYHora)
+        }));
+      },
+      error: (err: any) => console.error('Error al cargar turnos del odontólogo', err)
+    });
+  }
 }
