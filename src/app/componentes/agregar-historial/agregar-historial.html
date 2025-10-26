@@ -1,72 +1,87 @@
 <div class="container mt-4">
   <h2>Registrar consulta</h2>
 
-  <div class="form-group">
-  <label for="dnipaciente">DNI Paciente:</label>
-  <input type="text" [value]="this.dniOdontologo" class="form-control" disabled>
-</div>
+  <div class="form-group mb-3">
+    <label for="dniodontologo">DNI Odontólogo:</label>
+    <input type="text" [value]="dniOdontologo" class="form-control" disabled>
+  </div>
 
   <form (ngSubmit)="guardarHistorial()">
+    <!-- Turno -->
     <div class="mb-3">
       <label>Turno</label>
       <select class="form-select" [(ngModel)]="form.idturno" name="idturno" required>
-        <option value="">Seleccionar turno...</option>
-        <option *ngFor="let t of turnos" [value]="t.idturno">
+        <option [ngValue]="null">Seleccionar turno...</option>
+        <option *ngFor="let t of turnos" [ngValue]="t.idturno">
           {{ t.fechaYHora | date:'short' }} - Paciente: {{ t.dnipaciente }}
         </option>
       </select>
     </div>
 
-    <div class="mb-3">
-      <label>Tratamiento</label>
-      <select class="form-select" [(ngModel)]="form.idtratamiento" name="idtratamiento" required>
-        <option value="">Seleccionar...</option>
-        <option *ngFor="let tr of tratamientos" [value]="tr.idtratamiento">{{ tr.nombre }}</option>
-      </select>
-    </div>
+<div class="mb-3">
+  <label>Tratamiento</label>
+  <select class="form-select" [(ngModel)]="form.idtratamiento" name="idtratamiento" (change)="onTratamientoSeleccionado()">
+    <option value="">Seleccionar tratamiento...</option>
+    <option *ngFor="let tr of tratamientos" [value]="tr.id">
+      {{ tr.nombre }} - {{ tr.costoBase | currency:'ARS':'symbol':'1.0-0' }}
+    </option>
+  </select>
+</div>
 
+    <!-- Motivo de consulta -->
     <div class="mb-3">
       <label>Motivo de consulta</label>
       <input class="form-control" [(ngModel)]="form.motivodeconsulta" name="motivodeconsulta">
     </div>
 
+    <!-- Diagnóstico -->
     <div class="mb-3">
       <label>Diagnóstico</label>
       <textarea class="form-control" [(ngModel)]="form.diagnostico" name="diagnostico"></textarea>
     </div>
 
+    <!-- Observaciones -->
     <div class="mb-3">
       <label>Observaciones</label>
       <textarea class="form-control" [(ngModel)]="form.observaciones" name="observaciones"></textarea>
     </div>
 
+    <!-- Dientes tratados -->
     <h5>Dientes tratados</h5>
-    <div *ngFor="let d of form.dientes; let i = index" class="card p-3 mb-2">
-      <div class="row">
-        <div class="col-md-2">
-          <label>Diente ID</label>
-          <input class="form-control" [(ngModel)]="d.dienteId" name="dienteId{{i}}">
-        </div>
-        <div class="col-md-3">
-          <label>Diagnóstico</label>
-          <input class="form-control" [(ngModel)]="d.diagnostico" name="diagnostico{{i}}">
-        </div>
-        <div class="col-md-3">
-          <label>Tratamiento</label>
-          <input class="form-control" [(ngModel)]="d.tratamiento" name="tratamiento{{i}}">
-        </div>
-        <div class="col-md-3">
-          <label>Observaciones</label>
-          <input class="form-control" [(ngModel)]="d.observaciones" name="observaciones{{i}}">
-        </div>
-        <div class="col-md-1 d-flex align-items-end">
-          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarDiente(i)">X</button>
-        </div>
-      </div>
-    </div>
 
-    <button type="button" class="btn btn-secondary mt-2" (click)="agregarDiente()">+ Agregar diente</button>
+<!-- Botón para cargar los dientes del paciente -->
+<div class="mt-3">
+  <button type="button" class="btn btn-info" (click)="cargarDientesPaciente()">
+    🦷 Cargar dientes del paciente
+  </button>
+</div>
 
-    <button type="submit" class="btn btn-primary mt-3">Guardar historial</button>
+<!-- Al agregar un diente, permitir elegir cuál -->
+<div *ngFor="let d of form.dientes; let i = index" class="mt-2 p-3 border rounded">
+  <label>Diente:</label>
+  <select class="form-select" [(ngModel)]="d.dienteId" name="diente-{{i}}">
+    <option value="">Seleccione un diente</option>
+<option *ngFor="let diente of dientesPaciente" [value]="diente.id">
+  {{ diente.nombre }} ({{ diente.numero }})
+</option>
+  </select>
+
+  <label>Diagnóstico:</label>
+  <input class="form-control" [(ngModel)]="d.diagnostico" name="diag-{{i}}">
+
+  <label>Tratamiento:</label>
+  <input class="form-control" [(ngModel)]="d.tratamiento" name="trat-{{i}}">
+
+  <label>Observaciones:</label>
+  <input class="form-control" [(ngModel)]="d.observaciones" name="obs-{{i}}">
+
+  <button class="btn btn-danger mt-2" type="button" (click)="eliminarDiente(i)">Eliminar</button>
+</div>
+
+<!-- Botón agregar -->
+<button type="button" class="btn btn-secondary mt-3" (click)="agregarDiente()">+ Agregar diente</button>
+
+
+<button type="submit" class="btn btn-primary mt-3">Guardar historial</button>
   </form>
 </div>

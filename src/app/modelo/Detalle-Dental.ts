@@ -4,5 +4,6 @@ export interface DetalleDental {
   diagnostico: string;
   tratamiento: string;
   observaciones: string;
-  dienteId: number;
+  fechaRegistro?: string;
+  diente_id: number;
 }

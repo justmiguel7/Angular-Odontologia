@@ -25,4 +25,6 @@ private baseUrl = 'http://localhost:8090/api/dientes';
   guardarDiente(diente: Diente) {
     return this.http.post<Diente>(this.baseUrl, diente);
   }
+
+
 }

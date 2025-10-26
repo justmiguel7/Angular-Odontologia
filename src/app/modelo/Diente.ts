@@ -1,10 +1,11 @@
 export interface DetalleDental {
-  id: number;
+  id?: number;
   turnoId: number;
   diagnostico: string;
   tratamiento: string;
   observaciones: string;
-  fechaRegistro: string;
+  fechaRegistro?: string;
+  diente_id: number;
 }
 
 export interface Diente {
