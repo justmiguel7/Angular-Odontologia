@@ -8,6 +8,8 @@ import { Carousel } from './componentes/carousel/carousel';
 import { adminGuard } from './guard/admin-guard';
 import { Register } from './register/register';
 import { TurnoPacienteComponent } from './componentes/turnopaciente/turnopaciente.component';
+import { Plandental } from './componentes/plandental/plandental';
+import { TurnoOdontologoComponent } from './componentes/turnoodontologo/turnoodontologo.component';
 
 export const routes: Routes = [
   { path: '', component: Carousel },
@@ -17,6 +19,8 @@ export const routes: Routes = [
   { path: 'pacientes', component: PacienteComponent },
   { path: 'facturaciones', component: FacturacionComponent },
       { path: 'turno', component: TurnoPacienteComponent },
+      {path: 'plandental', component: Plandental},
+        { path: 'reservar-turno', component: TurnoOdontologoComponent },
   { path: 'detallefactura', component: DetallefacturaComponent },
   {
     path: 'dashboard-admin',

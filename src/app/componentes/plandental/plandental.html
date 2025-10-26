@@ -1,0 +1,32 @@
+<div class="plano-dental">
+  <div
+    *ngFor="let diente of dientes"
+    class="diente"
+    [ngClass]="{
+      'seleccionado': diente === dienteSeleccionado,
+      'superior': diente.cuadrante === '1' || diente.cuadrante === '2',
+      'inferior': diente.cuadrante === '3' || diente.cuadrante === '4'
+    }"
+    (click)="seleccionarDiente(diente)"
+  >
+    <div class="forma-diente">
+      <span class="numero">{{ diente.numero }}</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="dienteSeleccionado" class="detalles-diente">
+  <h3>{{ dienteSeleccionado.nombre }} ({{ dienteSeleccionado.numero }})</h3>
+  <ul *ngIf="dienteSeleccionado.detalles && dienteSeleccionado.detalles.length > 0; else sinDetalles">
+    <li *ngFor="let detalle of dienteSeleccionado.detalles">
+      <strong>Diagnóstico:</strong> {{ detalle.diagnostico }} <br>
+      <strong>Tratamiento:</strong> {{ detalle.tratamiento }} <br>
+      <strong>Observaciones:</strong> {{ detalle.observaciones }} <br>
+      <strong>Fecha:</strong> {{ detalle.fechaRegistro | date:'short' }}
+      <hr>
+    </li>
+  </ul>
+  <ng-template #sinDetalles>
+    <p>No hay detalles dentales</p>
+  </ng-template>
+</div>

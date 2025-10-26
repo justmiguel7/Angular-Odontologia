@@ -21,6 +21,7 @@
 
       <!-- Paciente -->
       <ng-container *ngIf="rol === 'PACIENTE'">
+                <li><a routerLink="/plandental">Plan dental</a></li>
         <li><a routerLink="/turno">Reservar turno</a></li>
         <li><a [routerLink]="['/historial-clinico', obtenerDni()]">Historial clínico</a></li>
         <li><button (click)="logout()">Cerrar sesión</button></li>
