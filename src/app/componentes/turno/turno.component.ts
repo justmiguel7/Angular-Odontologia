@@ -20,16 +20,16 @@ export class TurnoComponent implements OnInit {
   }
 
   listarTurnos(): void {
-    const dni = '12345678'; // ejemplo, o sacalo del AuthService
-    this.servicio.listarPorDniOdontologo(dni).subscribe({
+    this.servicio.listarTurnos().subscribe({
       next: (datos: Turno[]) => {
-        console.log('Datos crudos que llegan:', datos);
-        this.turnos = datos.map((turno: Turno) => ({
+        // convertimos la fecha de string a Date
+        this.turnos = datos.map(turno => ({
           ...turno,
           fechaYHora: new Date(turno.fechaYHora)
         }));
+        console.log('Turnos cargados:', this.turnos);
       },
-      error: (err: any) => console.error('Error al cargar turnos del odontólogo', err)
+      error: (err: any) => console.error('Error al cargar turnos:', err)
     });
   }
 }

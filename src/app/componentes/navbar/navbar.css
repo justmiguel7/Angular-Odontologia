@@ -1,52 +1,67 @@
-/* --- Estilos generales --- */
+/* --- Navbar --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #242424;
-  color: white;
+  background-color: #F4F6F8; /* Fondo claro */
+  color: #333333; /* Texto principal */
   padding: 12px 24px;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 0 2px 6px rgba(217, 224, 231, 0.5); /* sombra suave */
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s ease;
 }
 
 /* --- Logo --- */
 .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
   letter-spacing: 1px;
+  cursor: pointer;
+  color: #0072CE; /* Azul principal */
 }
 
 /* --- Links --- */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.2rem;
+  gap: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .nav-links li a {
-  color: white;
+  color: #333333; /* Texto principal */
   text-decoration: none;
   font-weight: 500;
-  transition: 0.2s;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.nav-links li a:hover {
-  color: #00c3ff;
+.nav-links li a:hover,
+.nav-links li a.active {
+  background-color: #B3E5FC; /* Celeste suave */
+  color: #0072CE; /* Azul principal */
 }
 
 /* --- Botón Login --- */
 .btn-login {
-  background: #00c3ff;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
+  background: #0072CE; /* Azul principal */
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-login:hover {
-  background: #009ed3;
+  background: #3FA9F5; /* Azul secundario */
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(217, 224, 231, 0.5); /* sombra suave */
 }
 
 /* --- Botón menú (mobile) --- */
@@ -54,18 +69,20 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 24px;
-  height: 18px;
+  width: 28px;
+  height: 20px;
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 15;
 }
 
 .menu-btn .bar {
   height: 3px;
   width: 100%;
-  background-color: white;
-  border-radius: 2px;
+  background-color: #333333; /* Texto principal */
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
 /* --- Responsive --- */
@@ -79,51 +96,60 @@
     top: 60px;
     right: 0;
     flex-direction: column;
-    background-color: #242424;
-    width: 200px;
-    height: 0;
+    background-color: #F4F6F8; /* Fondo claro */
+    width: 220px;
+    max-height: 0;
     overflow: hidden;
     opacity: 0;
+    transition: all 0.4s ease;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 12px rgba(217, 224, 231, 0.5); /* sombra */
   }
 
   .nav-links.active {
-    height: auto;
-    padding: 10px 0;
+    max-height: 500px;
     opacity: 1;
+    padding: 10px 0;
   }
 
   .nav-links li {
     text-align: center;
     margin: 10px 0;
   }
+
+  .nav-links li a,
+  .nav-links li button {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
-
-/* modal
-*/
-
+/* --- Modal --- */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(51, 51, 51, 0.55); /* semi oscuro */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .modal-content {
-  width: 600px;       /* ancho deseado */
-  max-width: 90%;     /* responsive */
-  height: 500px;
-  background-color: #fff;
-  padding: 25rem;
-  border-radius: 10px;
+  background-color: #FFFFFF; /* Blanco */
+  width: 420px;
+  max-width: 90%;
+  padding: 2rem;
+  border-radius: 12px;
   position: relative;
-
+  transform: translateY(-40px);
+  opacity: 0;
+  animation: slideIn 0.4s forwards;
+  box-shadow: 0 8px 20px rgba(217, 224, 231, 0.5); /* sombra */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,47 +159,17 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
+  top: 12px;
+  right: 18px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #555555; /* Texto secundario */
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-
-/* Animación del fondo (fade) */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* Animación del contenido (slide + fade) */
-.modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  position: relative;
-  width: 400px;
-  max-width: 90%;
-  transform: translateY(-50px);
-  opacity: 0;
-  animation: slideIn 0.4s forwards;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
+.close:hover {
+  color: #0072CE; /* Azul principal */
 }
 
 /* Keyframes */
@@ -183,12 +179,6 @@
 }
 
 @keyframes slideIn {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(-40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

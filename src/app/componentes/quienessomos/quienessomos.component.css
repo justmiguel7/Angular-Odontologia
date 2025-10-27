@@ -1,0 +1,134 @@
+/* === Estilos generales === */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7faff; /* fondo blanco con tono azulado */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* Títulos principales */
+.empresa h2 {
+  color: #0066cc;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Párrafos */
+.empresa p {
+  line-height: 1.7;
+  color: #444;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+/* Lista con íconos */
+.empresa ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.empresa ul li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: #005599;
+}
+
+/* Firma y fecha */
+.firma {
+  font-style: italic;
+  text-align: right;
+  color: #0066cc;
+  margin-top: 25px;
+}
+
+
+.historia .texto {
+  max-width: 800px;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-align: center;
+}
+/* Contenedor general */
+.empresa {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 80, 150, 0.1);
+}
+
+.firmas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  gap: 30px; /* Espacio entre las firmas */
+  justify-items: center; /* Centra cada firma dentro de su celda */
+  margin: 25px 0;
+}
+.firmas img {
+  width: 400px;
+  opacity: 1.0;
+}
+
+/* Sección historia */
+.historia {
+  margin-top: 60px;
+  background: linear-gradient(to right, #e9f4ff, #ffffff);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(0, 100, 200, 0.1);
+}
+
+.historia h2 {
+  color: #0066cc;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.historia-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Texto de la historia */
+
+
+/* Imagen lateral */
+.historia .imagen {
+  flex: 1 1 35%;
+  display: flex;
+  justify-content: center;
+}
+
+.historia .imagen img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 80, 150, 0.2);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .historia-contenido {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .historia .imagen img {
+    max-width: 200px;
+  }
+
+  .empresa {
+    padding: 15px;
+  }
+}

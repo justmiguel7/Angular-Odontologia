@@ -9,15 +9,35 @@ import { Turno } from '../modelo/Turno';
 export class TurnoService {
   private urlTurno = 'http://localhost:8084/turno';
 
+    private urlBff = 'http://localhost:8080/turno';
+
+
   constructor(private http: HttpClient) {}
 
   // Listar todos los turnos
-  listarTurnos(): Observable<Turno[]> {
-    return this.http.get<Turno[]>(`${this.urlTurno}/listado`);
-  }
+listarTurnos(): Observable<Turno[]> {
+  const token = localStorage.getItem('riverplate');
+  return this.http.get<Turno[]>(`${this.urlTurno}/listado`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
 
   // Listar turnos filtrados por DNI del odontólogo
   listarPorDniOdontologo(dni: string): Observable<Turno[]> {
-    return this.http.get<Turno[]>(`${this.urlTurno}/odontologo/${dni}`);
-  }
+      const token = localStorage.getItem('riverplate');
+    return this.http.get<Turno[]>(`${this.urlTurno}/odontologo/${dni}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
+  // Confirmar turno por ID + dni del odontólogo
+  confirmarTurno(idTurno: number, dniOdontologo: string): Observable<Turno> {
+      const token = localStorage.getItem('riverplate');
+    return this.http.put<Turno>(
+      `${this.urlBff}/confirmar/${idTurno}`,
+      { dniOdontologo }, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
 }

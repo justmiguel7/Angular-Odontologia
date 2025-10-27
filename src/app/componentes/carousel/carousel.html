@@ -1,17 +1,22 @@
 <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+  <!-- Indicadores -->
   <div class="carousel-indicators">
     <button *ngFor="let img of images; let i = index"
             type="button"
             data-bs-target="#mainCarousel"
             [attr.data-bs-slide-to]="i"
-            [class.active]="i === 0"></button>
+            [class.active]="i === 0">
+    </button>
   </div>
 
+  <!-- Items -->
   <div class="carousel-inner">
     <div *ngFor="let item of images; let i = index"
          class="carousel-item"
          [class.active]="i === 0"
-         [style.backgroundImage]="'url(' + item.url + ')'">
+         [style.backgroundImage]="'url(\'' + item.url + '\')'"
+         style="background-size: cover; background-position: center; height: 400px;">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{ item.title }}</h5>
         <p>{{ item.text }}</p>
@@ -19,6 +24,7 @@
     </div>
   </div>
 
+  <!-- Controles -->
   <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>

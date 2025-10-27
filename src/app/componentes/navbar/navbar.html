@@ -13,7 +13,12 @@
     <!-- Si NO está logueado -->
     <ng-container *ngIf="!isLogged">
       <li><a routerLink="/register" routerLinkActive="active">Primera consulta</a></li>
+
+      <li><a routerLink="/QuienesSomos" routerLinkActive="active">Quienes Somos</a></li>
+      <li><a routerLink="/FAQ" routerLinkActive="active">FAQ</a></li>
+      <li><a routerLink="/Contacto" routerLinkActive="active">Contacto</a></li>
       <li><button class="btn-login" (click)="abrirModalLogin()">Login</button></li>
+
     </ng-container>
 
     <!-- Si está logueado -->
@@ -30,7 +35,7 @@
       <!-- Odontólogo -->
       <ng-container *ngIf="rol === 'ODONTOLOGO'">
         <li><a routerLink="/reservar-turno">Reservar turno</a></li>
-        <li><a routerLink="/confirmar-turno">Confirmar turno</a></li>
+        <li><a routerLink="/Confirmar">Confirmar turno</a></li>
                 <li><a routerLink="/agregar-historial">Agregar al historial clinico</a></li>
         <li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>
         <li><button (click)="logout()">Cerrar sesión</button></li>

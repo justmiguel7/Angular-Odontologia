@@ -19,6 +19,19 @@ export class AuthService {
     return localStorage.getItem('riverplate');
   }
 
+  // Decodifica el payload del JWT
+  getDecodedToken(): any {
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      const payload = token.split('.')[1];
+      return JSON.parse(atob(payload));
+    } catch (error) {
+      console.error('Error al decodificar token:', error);
+      return null;
+    }
+  }
+
   // Leer rol del token
   getRole(): string | null {
     const token = this.getToken();

@@ -3,28 +3,29 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './carousel.html',
-  styleUrl: './carousel.css'
+  styleUrls: ['./carousel.css']
 })
 export class Carousel {
   images = [
     {
-      url: 'https://picsum.photos/id/1018/1600/900',
+      url: 'assets/carousel/sonrisa.jpg',
       title: 'Primera imagen',
-      text: 'Un hermoso paisaje natural para comenzar.',
+      text: 'Una sonrisa perfecta.',
       interval: 3000
     },
     {
-      url: 'https://picsum.photos/id/1025/1600/900',
+      url: 'assets/carousel/sonrisa_2.jpg',
       title: 'Segunda imagen',
-      text: 'La naturaleza y su esplendor en cada detalle.',
+      text: 'Una buena sonrisa para el día a día.',
       interval: 3000
     },
     {
-      url: 'https://picsum.photos/id/1039/1600/900',
+      url: 'assets/carousel/odontologo.jpg',
       title: 'Tercera imagen',
-      text: 'Colores que inspiran y transmiten calma.',
+      text: 'Si tenés caries, anda a que te revisen.',
       interval: 3000
     }
   ];

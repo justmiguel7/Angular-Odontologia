@@ -1,13 +1,10 @@
 .carousel-item {
-  height: 300px; /* 🔥 ajustá el alto acá */
+
   min-height: 400px;
-  background-position: center;
-  background-size: cover;
-  position: relative;
 }
 
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.45);
-  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
   border-radius: 10px;
 }
