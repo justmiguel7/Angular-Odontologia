@@ -1,8 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>PacienteID</th>
-      <th>OdontologoID</th>
+      <th>Dni del paciente</th>
       <th>Fecha y Hora</th>
       <th>Estado</th>
       <th>Acciones</th>
@@ -11,7 +10,6 @@
   <tbody>
     <tr *ngFor="let turno of turnos">
       <td>{{ turno.dnipaciente }}</td>
-      <td>{{ turno.dniodontologo || '-' }}</td>
       <td>{{ turno.fechaYHora | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
       <td>{{ turno.estado }}</td>
       <td>
@@ -20,6 +18,15 @@
           (click)="confirmarTurno(turno.idturno)">
           Confirmar
         </button>
+
+<!-- 🔹 Botón nuevo para cancelar -->
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="cancelarTurno(turno.idturno)"
+        >
+          Cancelar
+        </button>
+
       </td>
     </tr>
   </tbody>

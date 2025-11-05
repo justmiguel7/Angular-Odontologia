@@ -68,4 +68,43 @@ confirmarTurno(turnoId: number) {
     }
   });
 }
+
+cancelarTurno(idTurno: number) {
+  Swal.fire({
+    title: '¿Cancelar turno?',
+    text: 'Esta acción no se puede deshacer.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, cancelar',
+    cancelButtonText: 'No, mantener',
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'Cancelando turno...',
+        didOpen: () => Swal.showLoading(),
+        allowOutsideClick: false
+      });
+
+      this.turnoService.cancelarTurno(idTurno).subscribe({
+        next: () => {
+          Swal.close();
+          Swal.fire({
+            icon: 'success',
+            title: 'Turno cancelado correctamente',
+            timer: 1500,
+            showConfirmButton: false
+          });
+          this.listarTurnos();
+        },
+        error: err => {
+          Swal.close();
+          Swal.fire('Error', err.error?.message || 'No se pudo cancelar el turno', 'error');
+        }
+      });
+    }
+  });
+}
+
 }

@@ -6,16 +6,20 @@
     <input type="text" [value]="dniOdontologo" class="form-control" disabled>
   </div>
 
-  <form (ngSubmit)="guardarHistorial()">
+  <form #historialForm="ngForm" (ngSubmit)="guardarHistorial()" novalidate>
+
     <!-- Turno -->
     <div class="mb-3">
       <label>Turno</label>
-      <select class="form-select" [(ngModel)]="form.idturno" name="idturno" required>
+      <select class="form-select" [(ngModel)]="form.idturno" name="idturno" required #idturno="ngModel">
         <option [ngValue]="null">Seleccionar turno...</option>
         <option *ngFor="let t of turnos" [ngValue]="t.idturno">
           {{ t.fechaYHora | date:'short' }} - Paciente: {{ t.dnipaciente }}
         </option>
       </select>
+      <div class="text-danger" *ngIf="idturno.invalid && idturno.touched">
+        Debe seleccionar un turno.
+      </div>
     </div>
 
     <!-- Tratamientos con checkboxes -->
@@ -34,41 +38,67 @@
           </label>
         </div>
       </div>
-      <small class="form-text text-muted">Seleccioná uno o varios tratamientos</small>
+      <div class="text-danger" *ngIf="form.idtratamientos.length === 0 && formSubmitted">
+        Debe seleccionar al menos un tratamiento.
+      </div>
     </div>
 
     <!-- Motivo de consulta -->
     <div class="mb-3">
       <label>Motivo de consulta</label>
-      <input class="form-control" [(ngModel)]="form.motivodeconsulta" name="motivodeconsulta">
+      <input class="form-control" [(ngModel)]="form.motivodeconsulta" name="motivodeconsulta" required #motivodeconsulta="ngModel">
+      <div class="text-danger" *ngIf="motivodeconsulta.invalid && motivodeconsulta.touched">
+        Debe ingresar el motivo de consulta.
+      </div>
     </div>
 
     <!-- Diagnóstico -->
     <div class="mb-3">
       <label>Diagnóstico</label>
-      <textarea class="form-control" [(ngModel)]="form.diagnostico" name="diagnostico"></textarea>
+      <textarea class="form-control" [(ngModel)]="form.diagnostico" name="diagnostico" required #diagnostico="ngModel"></textarea>
+      <div class="text-danger" *ngIf="diagnostico.invalid && diagnostico.touched">
+        Debe ingresar un diagnóstico.
+      </div>
     </div>
 
     <!-- Observaciones -->
     <div class="mb-3">
       <label>Observaciones</label>
-      <textarea class="form-control" [(ngModel)]="form.observaciones" name="observaciones"></textarea>
+      <textarea class="form-control" [(ngModel)]="form.observaciones" name="observaciones" required #observaciones="ngModel"></textarea>
+      <div class="text-danger" *ngIf="observaciones.invalid && observaciones.touched">
+        Debe ingresar observaciones.
+      </div>
+    </div>
+
+    <!-- Alergias -->
+    <div class="mb-3">
+      <label>Alergias</label>
+      <textarea class="form-control" [(ngModel)]="form.alergias" name="alergias" required #alergias="ngModel"></textarea>
+      <div class="text-danger" *ngIf="alergias.invalid && alergias.touched">
+        Debe ingresar alergias.
+      </div>
+    </div>
+
+    <!-- Antecedentes médicos -->
+    <div class="mb-3">
+      <label>Antecedentes médicos</label>
+      <textarea class="form-control" [(ngModel)]="form.antecedentesmedicos" name="antecedentesmedicos" required #antecedentesmedicos="ngModel"></textarea>
+      <div class="text-danger" *ngIf="antecedentesmedicos.invalid && antecedentesmedicos.touched">
+        Debe ingresar antecedentes médicos.
+      </div>
     </div>
 
     <!-- Dientes tratados -->
     <h5>Dientes tratados</h5>
-
-    <!-- Botón para cargar dientes del paciente -->
     <div class="mt-3">
       <button type="button" class="btn btn-info" (click)="cargarDientesPaciente()">
         🦷 Cargar dientes del paciente
       </button>
     </div>
 
-    <!-- Al agregar un diente -->
     <div *ngFor="let d of form.dientes; let i = index" class="mt-2 p-3 border rounded">
       <label>Diente:</label>
-      <select class="form-select" [(ngModel)]="d.dienteId" name="diente-{{i}}">
+      <select class="form-select" [(ngModel)]="d.dienteId" name="diente-{{i}}" required>
         <option value="">Seleccione un diente</option>
         <option *ngFor="let diente of dientesPaciente" [value]="diente.id">
           {{ diente.nombre }} ({{ diente.numero }})
@@ -76,18 +106,17 @@
       </select>
 
       <label>Diagnóstico:</label>
-      <input class="form-control" [(ngModel)]="d.diagnostico" name="diag-{{i}}">
+      <input class="form-control" [(ngModel)]="d.diagnostico" name="diag-{{i}}" required>
 
       <label>Tratamiento:</label>
-      <input class="form-control" [(ngModel)]="d.tratamiento" name="trat-{{i}}">
+      <input class="form-control" [(ngModel)]="d.tratamiento" name="trat-{{i}}" required>
 
       <label>Observaciones:</label>
-      <input class="form-control" [(ngModel)]="d.observaciones" name="obs-{{i}}">
+      <input class="form-control" [(ngModel)]="d.observaciones" name="obs-{{i}}" required>
 
       <button class="btn btn-danger mt-2" type="button" (click)="eliminarDiente(i)">Eliminar</button>
     </div>
 
-    <!-- Botón agregar diente -->
     <button type="button" class="btn btn-secondary mt-3" (click)="agregarDiente()">+ Agregar diente</button>
 
     <!-- Guardar historial -->

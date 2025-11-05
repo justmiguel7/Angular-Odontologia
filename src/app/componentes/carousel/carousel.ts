@@ -12,20 +12,20 @@ export class Carousel {
   images = [
     {
       url: 'assets/carousel/sonrisa.jpg',
-      title: 'Primera imagen',
-      text: 'Una sonrisa perfecta.',
+      title: 'DentalHub',
+      text: 'Expertos en nuestro labor.',
       interval: 3000
     },
     {
       url: 'assets/carousel/sonrisa_2.jpg',
-      title: 'Segunda imagen',
-      text: 'Una buena sonrisa para el día a día.',
+      title: 'La vida se trata de sonrisas',
+      text: 'Sonreí cada día a día.',
       interval: 3000
     },
     {
       url: 'assets/carousel/odontologo.jpg',
-      title: 'Tercera imagen',
-      text: 'Si tenés caries, anda a que te revisen.',
+      title: 'Te ayudamos en lo que sea',
+      text: 'Si tenés caries, podes reservar un turno.',
       interval: 3000
     }
   ];

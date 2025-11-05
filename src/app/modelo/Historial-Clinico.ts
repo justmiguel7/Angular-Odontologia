@@ -1,3 +1,6 @@
+import { Tratamiento } from './Tratamiento';
+
+
 export interface HistorialClinico {
   idhistorial?: number;
   dnipaciente: string;
@@ -10,4 +13,8 @@ export interface HistorialClinico {
   observaciones: string;
   alergias: string;
   antecedentesmedicos: string;
+  totalCosto?: number;
+
+    tratamientos?: Tratamiento[];  // los datos completos
+
 }

@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <div class="logo">DentalHub</div>
+  <div routerLink="/" class="logo">DentalHub</div>
 
   <button class="menu-btn" (click)="toggleMenu()">
     <span class="bar"></span>
@@ -22,14 +22,14 @@
     </ng-container>
 
     <!-- Si está logueado -->
-    <ng-container *ngIf="isLogged"> 
+    <ng-container *ngIf="isLogged">
 
       <!-- Paciente -->
       <ng-container *ngIf="rol === 'PACIENTE'">
                 <li><a routerLink="/plandental">Plan dental</a></li>
         <li><a routerLink="/turno">Reservar turno</a></li>
         <!--<li><a [routerLink]="['/historial-clinico', obtenerDni()]">Historial clínico</a></li>-->
-        <li><button (click)="logout()">Cerrar sesión</button></li>
+<li><button class="btn-logout" (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 
       <!-- Odontólogo -->
@@ -38,19 +38,30 @@
         <li><a routerLink="/Confirmar">Confirmar turno</a></li>
                 <li><a routerLink="/agregar-historial">Agregar al historial clinico</a></li>
         <!--<li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>-->
-        <li><button (click)="logout()">Cerrar sesión</button></li>
+
+                        <li><a routerLink="/turno-cancelable">Ver turnos</a></li>
+
+
+<li><button class="btn-logout" (click)="logout()">Cerrar sesión</button></li>
+
+
+
       </ng-container>
 
       <!-- Administrador -->
       <ng-container *ngIf="rol === 'ADMINISTRADOR'">
         <li><a routerLink="/dashboard-admin">Dashboard</a></li>
-        <li><button (click)="logout()">Cerrar sesión</button></li>
+                        <li><a routerLink="/turno-cancelable">Ver turnos</a></li>
+
+<li><button class="btn-logout" (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 
            <!-- Recepcionista -->
       <ng-container *ngIf="rol === 'RECEPCIONISTA'">
         <li><a routerLink="/Confirmar-Recepcionista">Confirmar turno</a></li>
-        <li><button (click)="logout()">Cerrar sesión</button></li>
+                        <li><a routerLink="/turno-cancelable">Ver turnos</a></li>
+
+<li><button class="btn-logout" (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 
     </ng-container>

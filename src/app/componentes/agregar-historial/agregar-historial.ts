@@ -123,70 +123,77 @@ this.form.idtratamientos = this.form.idtratamientos.filter((tid: number) => tid 
   eliminarDiente(i: number) {
     this.form.dientes.splice(i, 1);
   }
+formSubmitted = false;
 
-  guardarHistorial() {
-    const turnoSeleccionado = this.turnos.find(t => t.idturno == this.form.idturno);
-    if (!turnoSeleccionado) {
-      Swal.fire('Error', 'Debe seleccionar un turno válido', 'warning');
+guardarHistorial() {
+  this.formSubmitted = true;
+
+  // Validar checkboxes
+  if (this.form.idtratamientos.length === 0) {
+    Swal.fire('Error', 'Debe seleccionar al menos un tratamiento', 'warning');
+    return;
+  }
+
+  // Validar campos requeridos
+  if (!this.form.idturno || !this.form.motivodeconsulta || !this.form.diagnostico
+      || !this.form.observaciones || !this.form.alergias || !this.form.antecedentesmedicos) {
+    Swal.fire('Error', 'Complete todos los campos obligatorios', 'warning');
+    return;
+  }
+
+  // Validar dientes (si se agregó alguno)
+  for (let i = 0; i < this.form.dientes.length; i++) {
+    const d = this.form.dientes[i];
+    if (!d.dienteId || !d.diagnostico || !d.tratamiento || !d.observaciones) {
+      Swal.fire('Error', `Complete todos los campos del diente #${i+1}`, 'warning');
       return;
     }
-
-    const historial = {
-      dnipaciente: turnoSeleccionado.dnipaciente,
-      dniodontologo: this.dniOdontologo,
-      idturno: Number(this.form.idturno),
-      idtratamientos: this.form.idtratamientos || [],
-      motivodeconsulta: this.form.motivodeconsulta,
-      fechadeconsulta: new Date().toISOString(),
-      diagnostico: this.form.diagnostico,
-      observaciones: this.form.observaciones,
-      alergias: this.form.alergias,
-      antecedentesmedicos: this.form.antecedentesmedicos
-    };
-
-    console.log('🚀 Payload a enviar (historial):', historial);
-
-    this.historialService.crearHistorial(historial).subscribe({
-      next: () => {
-        // ✅ Enviar los detalles dentales después
-        if (this.form.dientes.length > 0) {
-          this.form.dientes.forEach((detalle: any) => {
-            const detalleEnviar: DetalleDental = {
-              turnoId: Number(turnoSeleccionado.idturno),
-              diente_id: Number(detalle.dienteId),
-              diagnostico: detalle.diagnostico,
-              tratamiento: detalle.tratamiento,
-              observaciones: detalle.observaciones,
-              fechaRegistro: new Date().toISOString()
-            };
-
-            console.log('🦷 Enviando detalle dental:', detalleEnviar);
-
-            this.detalleDentalService.guardar(detalleEnviar).subscribe({
-              next: () => console.log('✅ Detalle dental guardado'),
-              error: (err) => console.error('❌ Error guardando detalle dental', err)
-            });
-          });
-        }
-
-        Swal.fire('Éxito', 'Historial clínico guardado correctamente', 'success');
-
-        // 🔄 Resetear formulario
-        this.form = {
-          idturno: null,
-          idtratamientos: [],
-          motivodeconsulta: '',
-          diagnostico: '',
-          observaciones: '',
-          alergias: '',
-          antecedentesmedicos: '',
-          dientes: []
-        };
-      },
-      error: (err) => {
-        console.error('❌ Error al guardar historial', err);
-        Swal.fire('Error', 'No se pudo guardar el historial clínico', 'error');
-      }
-    });
   }
+
+  const turnoSeleccionado = this.turnos.find(t => t.idturno == this.form.idturno);
+  if (!turnoSeleccionado) {
+    Swal.fire('Error', 'Debe seleccionar un turno válido', 'warning');
+    return;
+  }
+
+  const historial = {
+    dnipaciente: turnoSeleccionado.dnipaciente,
+    dniodontologo: this.dniOdontologo,
+    idturno: Number(this.form.idturno),
+    idtratamientos: this.form.idtratamientos || [],
+    motivodeconsulta: this.form.motivodeconsulta,
+    fechadeconsulta: new Date().toISOString(),
+    diagnostico: this.form.diagnostico,
+    observaciones: this.form.observaciones,
+    alergias: this.form.alergias,
+    antecedentesmedicos: this.form.antecedentesmedicos
+  };
+
+  console.log('🚀 Payload a enviar (historial):', historial);
+
+  this.historialService.crearHistorial(historial).subscribe({
+    next: () => {
+      Swal.fire('Éxito', 'Historial clínico guardado correctamente', 'success');
+      // Resetear formulario
+      this.form = {
+        idturno: null,
+        idtratamientos: [],
+        motivodeconsulta: '',
+        diagnostico: '',
+        observaciones: '',
+        alergias: '',
+        antecedentesmedicos: '',
+        dientes: []
+      };
+      this.formSubmitted = false;
+    },
+    error: (err) => {
+      console.error('❌ Error al guardar historial', err);
+      Swal.fire('Error', 'No se pudo guardar el historial clínico', 'error');
+    }
+  });
+}
+
+
+
 }

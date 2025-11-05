@@ -4,7 +4,7 @@
 }
 
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.063);
   padding: 15px;
   border-radius: 10px;
 }
@@ -211,7 +211,7 @@
 .text-section .form-select:focus {
   border-color: #0056d6;
   box-shadow: 0 0 6px rgba(0, 86, 214, 0.4);
-  
+
 }
 
 /* Efecto sutil de movimiento al hacer hover en la sección */

@@ -1,0 +1,36 @@
+<table class="table table-striped text-center align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Paciente DNI</th>
+      <th scope="col">Odontólogo DNI</th>
+      <th scope="col">Fecha y Hora</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Acciones</th> <!-- ✅ agregamos encabezado -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let turno of turnos">
+      <td>{{ turno.dnipaciente }}</td>
+      <td>{{ turno.dniodontologo }}</td>
+
+
+      <td>{{ turno.fechaYHora | date: 'short' }}</td>
+
+
+      <td [ngClass]="{'text-danger': turno.estado === 'CANCELADO'}">
+        {{ turno.estado }}
+      </td>
+
+      <td>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="cancelarTurno(turno.idturno)"
+          [disabled]="turno.estado === 'CANCELADO'"
+        >
+          Cancelar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

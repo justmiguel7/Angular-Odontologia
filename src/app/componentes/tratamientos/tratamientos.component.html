@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">TratamientoID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Costo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tratamiento of tratamientos">
+      <td>{{ tratamiento.id }}</td>
+      <td>{{ tratamiento.nombre }}</td>
+      <td>{{ tratamiento.descripcion }}</td>
+      <td>{{ tratamiento.costo | currency:'ARS':'symbol':'1.0-0' }}</td>
+    </tr>
+  </tbody>
+</table>

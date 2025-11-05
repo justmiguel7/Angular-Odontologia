@@ -132,3 +132,10 @@ body {
     padding: 15px;
   }
 }
+
+img {
+  height: 600px;
+  width: 100%;        /* ancho del contenedor */
+  object-fit: cover;  /* mantiene proporción y recorta exceso */
+  display: block;
+}

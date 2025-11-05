@@ -8,7 +8,14 @@ export class TratamientoService {
 
   constructor(private http: HttpClient) {}
 
+
   getTratamientos(): Observable<any[]> {
     return this.http.get<any[]>(`${this.tratamientosUrl}/listado`);
   }
+
+    // Obtener todos los tratamientos por sus IDs
+  obtenerTratamientosPorIds(ids: number[]): Observable<Tratamiento[]> {
+    return this.http.post<Tratamiento[]>(`${this.tratamientosUrl}/por-ids`, ids);
+  }
+
 }
