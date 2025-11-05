@@ -18,21 +18,24 @@
       </select>
     </div>
 
-<div class="mb-3">
-  <label>Tratamientos</label>
-  <select
-    class="form-select"
-    multiple
-    [(ngModel)]="form.idtratamientos"
-    name="idtratamientos"
-    required>
-    <option *ngFor="let tr of tratamientos" [ngValue]="tr.id">
-      {{ tr.nombre }} - {{ tr.costoBase | currency:'ARS':'symbol':'1.0-0' }}
-    </option>
-  </select>
-  <small class="form-text text-muted">Podés seleccionar varios tratamientos manteniendo presionada CTRL o SHIFT.</small>
-</div>
-
+    <!-- Tratamientos con checkboxes -->
+    <div class="mb-3">
+      <label>Tratamientos</label>
+      <div *ngFor="let tr of tratamientos">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [value]="tr.id"
+            (change)="toggleTratamiento(tr.id, $event)"
+            [checked]="form.idtratamientos.includes(tr.id)">
+          <label class="form-check-label">
+            {{ tr.nombre }} - {{ tr.costoBase | currency:'ARS':'symbol':'1.0-0' }}
+          </label>
+        </div>
+      </div>
+      <small class="form-text text-muted">Seleccioná uno o varios tratamientos</small>
+    </div>
 
     <!-- Motivo de consulta -->
     <div class="mb-3">
@@ -55,39 +58,39 @@
     <!-- Dientes tratados -->
     <h5>Dientes tratados</h5>
 
-<!-- Botón para cargar los dientes del paciente -->
-<div class="mt-3">
-  <button type="button" class="btn btn-info" (click)="cargarDientesPaciente()">
-    🦷 Cargar dientes del paciente
-  </button>
-</div>
+    <!-- Botón para cargar dientes del paciente -->
+    <div class="mt-3">
+      <button type="button" class="btn btn-info" (click)="cargarDientesPaciente()">
+        🦷 Cargar dientes del paciente
+      </button>
+    </div>
 
-<!-- Al agregar un diente, permitir elegir cuál -->
-<div *ngFor="let d of form.dientes; let i = index" class="mt-2 p-3 border rounded">
-  <label>Diente:</label>
-  <select class="form-select" [(ngModel)]="d.dienteId" name="diente-{{i}}">
-    <option value="">Seleccione un diente</option>
-<option *ngFor="let diente of dientesPaciente" [value]="diente.id">
-  {{ diente.nombre }} ({{ diente.numero }})
-</option>
-  </select>
+    <!-- Al agregar un diente -->
+    <div *ngFor="let d of form.dientes; let i = index" class="mt-2 p-3 border rounded">
+      <label>Diente:</label>
+      <select class="form-select" [(ngModel)]="d.dienteId" name="diente-{{i}}">
+        <option value="">Seleccione un diente</option>
+        <option *ngFor="let diente of dientesPaciente" [value]="diente.id">
+          {{ diente.nombre }} ({{ diente.numero }})
+        </option>
+      </select>
 
-  <label>Diagnóstico:</label>
-  <input class="form-control" [(ngModel)]="d.diagnostico" name="diag-{{i}}">
+      <label>Diagnóstico:</label>
+      <input class="form-control" [(ngModel)]="d.diagnostico" name="diag-{{i}}">
 
-  <label>Tratamiento:</label>
-  <input class="form-control" [(ngModel)]="d.tratamiento" name="trat-{{i}}">
+      <label>Tratamiento:</label>
+      <input class="form-control" [(ngModel)]="d.tratamiento" name="trat-{{i}}">
 
-  <label>Observaciones:</label>
-  <input class="form-control" [(ngModel)]="d.observaciones" name="obs-{{i}}">
+      <label>Observaciones:</label>
+      <input class="form-control" [(ngModel)]="d.observaciones" name="obs-{{i}}">
 
-  <button class="btn btn-danger mt-2" type="button" (click)="eliminarDiente(i)">Eliminar</button>
-</div>
+      <button class="btn btn-danger mt-2" type="button" (click)="eliminarDiente(i)">Eliminar</button>
+    </div>
 
-<!-- Botón agregar -->
-<button type="button" class="btn btn-secondary mt-3" (click)="agregarDiente()">+ Agregar diente</button>
+    <!-- Botón agregar diente -->
+    <button type="button" class="btn btn-secondary mt-3" (click)="agregarDiente()">+ Agregar diente</button>
 
-
-<button type="submit" class="btn btn-primary mt-3">Guardar historial</button>
+    <!-- Guardar historial -->
+    <button type="submit" class="btn btn-primary mt-3">Guardar historial</button>
   </form>
 </div>

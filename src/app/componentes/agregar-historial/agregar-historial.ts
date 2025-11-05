@@ -23,7 +23,7 @@ export class AgregarHistorial implements OnInit {
   dientesPaciente: any[] = []; // 🦷 Dientes del paciente cargados desde el backend
   form: any = {
     idturno: '',
-    idtratamiento: '',
+    idtratamientos: [],
     motivodeconsulta: '',
     diagnostico: '',
     observaciones: '',
@@ -39,7 +39,7 @@ export class AgregarHistorial implements OnInit {
     private turnoService: TurnoService,
     private detalleDentalService: DetalleDentalService,
     private authService: AuthService,
-    private plandentalService: PlandentalService // ✅ Importado el servicio de dientes
+    private plandentalService: PlandentalService
   ) {}
 
   ngOnInit() {
@@ -74,13 +74,17 @@ export class AgregarHistorial implements OnInit {
     });
   }
 
-  onTratamientoSeleccionado() {
-    console.log('🦷 Tratamiento seleccionado ID:', this.form.idtratamiento);
-    const tratamiento = this.tratamientos.find(t => t.id == this.form.idtratamiento);
-    console.log('📋 Tratamiento completo:', tratamiento);
+  toggleTratamiento(id: number, event: any) {
+    if (event.target.checked) {
+      if (!this.form.idtratamientos.includes(id)) {
+        this.form.idtratamientos.push(id);
+      }
+    } else {
+this.form.idtratamientos = this.form.idtratamientos.filter((tid: number) => tid !== id);
+    }
+    console.log('Tratamientos seleccionados:', this.form.idtratamientos);
   }
 
-  // 🦷 Cargar dientes del paciente según el turno seleccionado
   cargarDientesPaciente() {
     const turnoSeleccionado = this.turnos.find(t => t.idturno == this.form.idturno);
     if (!turnoSeleccionado) {
@@ -118,76 +122,71 @@ export class AgregarHistorial implements OnInit {
 
   eliminarDiente(i: number) {
     this.form.dientes.splice(i, 1);
-
   }
 
-guardarHistorial() {
-  const turnoSeleccionado = this.turnos.find(t => t.idturno == this.form.idturno);
-  if (!turnoSeleccionado) {
-    Swal.fire('Error', 'Debe seleccionar un turno válido', 'warning');
-    return;
-  }
-
-  const historial = {
-    dnipaciente: turnoSeleccionado.dnipaciente,
-    dniodontologo: this.dniOdontologo,
-    idturno: Number(this.form.idturno),
-  idtratamientos: this.form.idtratamientos || [], // ✅ ahora es lista
-    motivodeconsulta: this.form.motivodeconsulta,
-    fechadeconsulta: new Date().toISOString(),
-    diagnostico: this.form.diagnostico,
-    observaciones: this.form.observaciones,
-    alergias: this.form.alergias,
-    antecedentesmedicos: this.form.antecedentesmedicos
-  };
-
-  console.log('🚀 Payload a enviar (historial):', historial);
-
-  this.historialService.crearHistorial(historial).subscribe({
-    next: () => {
-      // ✅ Enviar los detalles dentales después
-      if (this.form.dientes.length > 0) {
-        this.form.dientes.forEach((detalle: any) => {
-const detalleEnviar: DetalleDental = {
-  turnoId: Number(turnoSeleccionado.idturno),
-  diente_id: Number(detalle.dienteId), // 👈 aquí va el id directo
-  diagnostico: detalle.diagnostico,
-  tratamiento: detalle.tratamiento,
-  observaciones: detalle.observaciones,
-  fechaRegistro: new Date().toISOString()
-};
-
-
-          console.log('🦷 Enviando detalle dental:', detalleEnviar);
-
-          this.detalleDentalService.guardar(detalleEnviar).subscribe({
-            next: () => console.log('✅ Detalle dental guardado'),
-            error: (err) => console.error('❌ Error guardando detalle dental', err)
-          });
-        });
-      }
-
-      Swal.fire('Éxito', 'Historial clínico guardado correctamente', 'success');
-
-      // 🔄 Resetear formulario
-      this.form = {
-        idturno: null,
-        idtratamientos: [],
-        motivodeconsulta: '',
-        diagnostico: '',
-        observaciones: '',
-        alergias: '',
-        antecedentesmedicos: '',
-        dientes: []
-      };
-    },
-    error: (err) => {
-      console.error('❌ Error al guardar historial', err);
-      Swal.fire('Error', 'No se pudo guardar el historial clínico', 'error');
+  guardarHistorial() {
+    const turnoSeleccionado = this.turnos.find(t => t.idturno == this.form.idturno);
+    if (!turnoSeleccionado) {
+      Swal.fire('Error', 'Debe seleccionar un turno válido', 'warning');
+      return;
     }
-  });
-}
 
+    const historial = {
+      dnipaciente: turnoSeleccionado.dnipaciente,
+      dniodontologo: this.dniOdontologo,
+      idturno: Number(this.form.idturno),
+      idtratamientos: this.form.idtratamientos || [],
+      motivodeconsulta: this.form.motivodeconsulta,
+      fechadeconsulta: new Date().toISOString(),
+      diagnostico: this.form.diagnostico,
+      observaciones: this.form.observaciones,
+      alergias: this.form.alergias,
+      antecedentesmedicos: this.form.antecedentesmedicos
+    };
 
+    console.log('🚀 Payload a enviar (historial):', historial);
 
+    this.historialService.crearHistorial(historial).subscribe({
+      next: () => {
+        // ✅ Enviar los detalles dentales después
+        if (this.form.dientes.length > 0) {
+          this.form.dientes.forEach((detalle: any) => {
+            const detalleEnviar: DetalleDental = {
+              turnoId: Number(turnoSeleccionado.idturno),
+              diente_id: Number(detalle.dienteId),
+              diagnostico: detalle.diagnostico,
+              tratamiento: detalle.tratamiento,
+              observaciones: detalle.observaciones,
+              fechaRegistro: new Date().toISOString()
+            };
+
+            console.log('🦷 Enviando detalle dental:', detalleEnviar);
+
+            this.detalleDentalService.guardar(detalleEnviar).subscribe({
+              next: () => console.log('✅ Detalle dental guardado'),
+              error: (err) => console.error('❌ Error guardando detalle dental', err)
+            });
+          });
+        }
+
+        Swal.fire('Éxito', 'Historial clínico guardado correctamente', 'success');
+
+        // 🔄 Resetear formulario
+        this.form = {
+          idturno: null,
+          idtratamientos: [],
+          motivodeconsulta: '',
+          diagnostico: '',
+          observaciones: '',
+          alergias: '',
+          antecedentesmedicos: '',
+          dientes: []
+        };
+      },
+      error: (err) => {
+        console.error('❌ Error al guardar historial', err);
+        Swal.fire('Error', 'No se pudo guardar el historial clínico', 'error');
+      }
+    });
+  }
 }

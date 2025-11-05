@@ -53,19 +53,28 @@ select.form-select {
   width: 100%;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #00b894;
-  background-color: #fff;
-  box-shadow: 0 0 6px rgba(0, 184, 148, 0.5);
-  outline: none;
+
+
+/* ====== CHECKBOXES ====== */
+input[type="checkbox"] {
+  accent-color: #00b894; /* color del check */
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  cursor: pointer;
+  font-weight: 500;
 }
 
 /* ====== BLOQUE DE DIENTES ====== */
 .border {
   border: 1px solid #d9d9d9 !important;
   background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .border:hover {
@@ -79,6 +88,7 @@ select:focus {
   font-weight: 600;
   border-radius: 30px;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 /* Botón principal */
