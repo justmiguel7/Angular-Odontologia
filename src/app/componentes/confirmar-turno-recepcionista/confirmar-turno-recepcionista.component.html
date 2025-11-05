@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>PacienteID</th>
+      <th>OdontologoID</th>
+      <th>Fecha y Hora</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let turno of turnos">
+      <td>{{ turno.dnipaciente }}</td>
+      <td>
+        <select
+          class="form-select"
+          [(ngModel)]="form.dniodontologo"
+          name="dniodontologo"
+          (change)="onOdontologoSeleccionado()"
+        >
+          <option [ngValue]="null">Seleccionar odontologo...</option>
+          <option *ngFor="let odontologo of odontologos" [ngValue]="odontologo.dni">
+            Odontologo: {{ odontologo.nombre }} - {{ odontologo.dni }}
+          </option>
+        </select>
+      </td>
+      <td>{{ turno.fechaYHora | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+      <td>{{ turno.estado }}</td>
+      <td>
+        <button
+          class="btn btn-success btn-sm"
+          (click)="confirmarTurno(turno.idturno)"
+        >
+          Confirmar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

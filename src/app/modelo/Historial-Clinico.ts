@@ -3,7 +3,7 @@ export interface HistorialClinico {
   dnipaciente: string;
   dniodontologo: string;
   idturno: number;
-  idtratamiento: number;
+  idtratamientos: number[];
   motivodeconsulta: string;
   fechadeconsulta: string;
   diagnostico: string;

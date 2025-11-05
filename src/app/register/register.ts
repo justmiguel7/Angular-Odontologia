@@ -55,6 +55,16 @@ export class Register implements OnInit {
       this.registerForm.value.password
     );
 
+      // Mostrar SweetAlert con spinner
+  Swal.fire({
+    title: 'Registrando...',
+    html: 'Por favor, espera',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
 this.servicio.registrarPaciente(dto).subscribe({
   next: (response) => {
     console.log('Respuesta del backend:', response);
@@ -62,8 +72,8 @@ this.servicio.registrarPaciente(dto).subscribe({
       title: '¡Registro exitoso!',
       text: 'Tu cuenta de paciente fue creada',
       icon: 'success',
-      confirmButtonText: 'Ir al login'
-    }).then(() => this.router.navigateByUrl('/login'));
+      confirmButtonText: 'Ir al inicio'
+    }).then(() => this.router.navigateByUrl('/home'));
   },
   error: (err) => {
     console.error("Error al registrar:", err);

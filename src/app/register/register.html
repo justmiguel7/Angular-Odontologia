@@ -2,14 +2,37 @@
   <div class="signup">
     <form [formGroup]="registerForm">
       <label>Registro de Paciente</label>
-      <input type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="campoNoValido('nombre')">
-      <input type="text" placeholder="Apellido" formControlName="apellido" [class.is-invalid]="campoNoValido('apellido')">
-      <input type="text" placeholder="Dirección" formControlName="direccion" [class.is-invalid]="campoNoValido('direccion')">
-      <input type="text" placeholder="DNI" formControlName="dni" [class.is-invalid]="campoNoValido('dni')">
-      <input type="text" placeholder="Teléfono" formControlName="telefono" [class.is-invalid]="campoNoValido('telefono')">
-      <input type="email" placeholder="Email" formControlName="email" [class.is-invalid]="campoNoValido('email')">
-      <input type="password" placeholder="Password" formControlName="password" [class.is-invalid]="campoNoValido('password')">
-      <button type="button" [disabled]="registerForm.invalid" (click)="registrar()">Registrarse</button>
+    
+    <input type="text" placeholder="Nombre" formControlName="nombre"
+  maxlength="30"
+  [class.is-invalid]="campoNoValido('nombre')">
+
+<input type="text" placeholder="Apellido" formControlName="apellido"
+  maxlength="30"
+  [class.is-invalid]="campoNoValido('apellido')">
+
+<input type="text" placeholder="Dirección" formControlName="direccion"
+  maxlength="30"
+  [class.is-invalid]="campoNoValido('direccion')">
+
+<input type="text" placeholder="DNI" formControlName="dni"
+  maxlength="8"
+  [class.is-invalid]="campoNoValido('dni')">
+
+<input type="text" placeholder="Teléfono" formControlName="telefono"
+  maxlength="10"
+  [class.is-invalid]="campoNoValido('telefono')">
+
+<input type="email" placeholder="Email" formControlName="email"
+  maxlength="35"
+  [class.is-invalid]="campoNoValido('email')">
+
+<input type="password" placeholder="Password" formControlName="password"
+  maxlength="35"
+  [class.is-invalid]="campoNoValido('password')">
+
+    <button type="button" [disabled]="registerForm.invalid" (click)="registrar()">Registrarse</button>
+
     </form>
   </div>
 </div>

@@ -1,0 +1,87 @@
+/* ====== CONTENEDOR GENERAL ====== */
+.container {
+  max-width: 600px;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ====== TÍTULO ====== */
+h2 {
+  text-align: center;
+  color: #007bff; /* Azul principal */
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ====== CAMPOS DEL FORMULARIO ====== */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+input.form-control {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+input.form-control:focus {
+  border-color: #00b894; /* Verde Dental Total */
+  box-shadow: 0 0 5px rgba(0, 184, 148, 0.5);
+  background-color: #fff;
+}
+
+/* ====== BOTÓN ====== */
+.btn-primary {
+  background: linear-gradient(90deg, #007bff 0%, #00b894 100%);
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #0056d6 0%, #00946a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 576px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}

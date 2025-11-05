@@ -1,5 +1,5 @@
 <nav class="navbar">
-  <div class="logo">Odontologia</div>
+  <div class="logo">DentalHub</div>
 
   <button class="menu-btn" (click)="toggleMenu()">
     <span class="bar"></span>
@@ -9,26 +9,26 @@
 
   <ul [class.active]="menuAbierto" class="nav-links">
       <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a></li>
-
+      <li><a routerLink="/QuienesSomos" routerLinkActive="active">Quienes Somos</a></li>
+      <li><a routerLink="/FAQ" routerLinkActive="active">FAQ</a></li>
+      <li><a routerLink="/Contacto" routerLinkActive="active">Contacto</a></li>
     <!-- Si NO está logueado -->
     <ng-container *ngIf="!isLogged">
       <li><a routerLink="/register" routerLinkActive="active">Primera consulta</a></li>
 
-      <li><a routerLink="/QuienesSomos" routerLinkActive="active">Quienes Somos</a></li>
-      <li><a routerLink="/FAQ" routerLinkActive="active">FAQ</a></li>
-      <li><a routerLink="/Contacto" routerLinkActive="active">Contacto</a></li>
+
       <li><button class="btn-login" (click)="abrirModalLogin()">Login</button></li>
 
     </ng-container>
 
     <!-- Si está logueado -->
-    <ng-container *ngIf="isLogged">
+    <ng-container *ngIf="isLogged"> 
 
       <!-- Paciente -->
       <ng-container *ngIf="rol === 'PACIENTE'">
                 <li><a routerLink="/plandental">Plan dental</a></li>
         <li><a routerLink="/turno">Reservar turno</a></li>
-        <li><a [routerLink]="['/historial-clinico', obtenerDni()]">Historial clínico</a></li>
+        <!--<li><a [routerLink]="['/historial-clinico', obtenerDni()]">Historial clínico</a></li>-->
         <li><button (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 
@@ -37,13 +37,19 @@
         <li><a routerLink="/reservar-turno">Reservar turno</a></li>
         <li><a routerLink="/Confirmar">Confirmar turno</a></li>
                 <li><a routerLink="/agregar-historial">Agregar al historial clinico</a></li>
-        <li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>
+        <!--<li><a [routerLink]="['/historial-clinico', obtenerDniPaciente()]">Historial clínico</a></li>-->
         <li><button (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 
       <!-- Administrador -->
       <ng-container *ngIf="rol === 'ADMINISTRADOR'">
         <li><a routerLink="/dashboard-admin">Dashboard</a></li>
+        <li><button (click)="logout()">Cerrar sesión</button></li>
+      </ng-container>
+
+           <!-- Recepcionista -->
+      <ng-container *ngIf="rol === 'RECEPCIONISTA'">
+        <li><a routerLink="/Confirmar-Recepcionista">Confirmar turno</a></li>
         <li><button (click)="logout()">Cerrar sesión</button></li>
       </ng-container>
 

@@ -1,72 +1,88 @@
-/* Estilo general de la tabla */
+/* --- Contenedor general de la tabla --- */
 .table {
-  width: 100%;
+  width: 90%;
+  margin: 40px auto;
   border-collapse: collapse;
-  font-family: 'Arial', sans-serif;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 150, 136, 0.2);
+  transition: box-shadow 0.3s ease;
 }
 
-/* Encabezado */
+.table:hover {
+  box-shadow: 0 8px 25px rgba(0, 150, 136, 0.35);
+}
+
+/* --- Encabezado --- */
 .table thead {
-  background-color: #007bff; /* azul bonito */
-  color: white;
-  text-align: left;
+  background: linear-gradient(90deg, #009688, #00c9a7);
+  color: #ffffff;
 }
 
-.table thead th {
-  padding: 12px 15px;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* Cuerpo de la tabla */
-.table tbody td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 14px;
-  color: #333;
-}
-
-/* Filas alternadas */
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-/* Hover sobre la fila */
-.table tbody tr:hover {
-  background-color: #f1f5f9;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-/* Última fila sin borde */
-.table tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Opcional: centrado para columnas numéricas */
-.table tbody td:first-child,
-.table tbody td:nth-child(5),
-.table tbody td:nth-child(6) {
+.table th {
+  padding: 14px 10px;
   text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Responsivo */
-@media screen and (max-width: 768px) {
-  .table thead {
-    display: none;
+.table th:last-child {
+  border-right: none;
+}
+
+/* --- Cuerpo de la tabla --- */
+.table td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0f2f1;
+  border-right: 1px solid #e0f2f1;
+  color: #333;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.table td:last-child {
+  border-right: none;
+}
+
+/* --- Alternar color de filas --- */
+.table tbody tr:nth-child(even) {
+  background-color: #f6fefc;
+}
+
+/* --- Hover --- */
+.table tbody tr:hover {
+  background-color: #d1f7ef;
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+/* --- Animación sutil en entrada --- */
+.table tbody tr {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
   }
-  .table tbody td {
-    display: block;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .table {
     width: 100%;
-    box-sizing: border-box;
+    font-size: 0.8rem;
   }
-  .table tbody td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    display: inline-block;
-    width: 120px;
+  .table th, .table td {
+    padding: 8px 5px;
   }
 }

@@ -1,0 +1,149 @@
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ====== TÍTULO PRINCIPAL ====== */
+h2 {
+  text-align: center;
+  font-weight: 700;
+  color: #007bff;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* ====== SUBTÍTULOS ====== */
+h5 {
+  margin-top: 2rem;
+  color: #00b894;
+  font-weight: 700;
+}
+
+/* ====== LABELS ====== */
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+/* ====== INPUTS Y SELECTS ====== */
+input.form-control,
+textarea.form-control,
+select.form-select {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #00b894;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0, 184, 148, 0.5);
+  outline: none;
+}
+
+/* ====== BLOQUE DE DIENTES ====== */
+.border {
+  border: 1px solid #d9d9d9 !important;
+  background-color: #f9f9f9;
+}
+
+.border:hover {
+  background-color: #fefefe;
+  border-color: #00b894 !important;
+  box-shadow: 0 0 6px rgba(0, 184, 148, 0.3);
+}
+
+/* ====== BOTONES ====== */
+.btn {
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+/* Botón principal */
+.btn-primary {
+  background: linear-gradient(90deg, #007bff 0%, #00b894 100%);
+  border: none;
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #0056d6 0%, #00946a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4);
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #005dc0;
+}
+
+/* Botón info */
+.btn-info {
+  background-color: #00b894;
+  color: #fff;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #00946a;
+}
+
+/* Botón eliminar */
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+
+  .border {
+    padding: 1rem;
+  }
+}

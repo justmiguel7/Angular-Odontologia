@@ -1,0 +1,20 @@
+/* === Estructura general === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estructura principal Angular */
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El router-outlet ocupa el espacio disponible */
+router-outlet {
+  flex: 1;
+  display: block;
+  min-height: 0; /* evita que deje espacio extra */
+}

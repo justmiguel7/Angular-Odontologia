@@ -19,14 +19,20 @@
     </div>
 
 <div class="mb-3">
-  <label>Tratamiento</label>
-  <select class="form-select" [(ngModel)]="form.idtratamiento" name="idtratamiento" (change)="onTratamientoSeleccionado()">
-    <option value="">Seleccionar tratamiento...</option>
-    <option *ngFor="let tr of tratamientos" [value]="tr.id">
+  <label>Tratamientos</label>
+  <select
+    class="form-select"
+    multiple
+    [(ngModel)]="form.idtratamientos"
+    name="idtratamientos"
+    required>
+    <option *ngFor="let tr of tratamientos" [ngValue]="tr.id">
       {{ tr.nombre }} - {{ tr.costoBase | currency:'ARS':'symbol':'1.0-0' }}
     </option>
   </select>
+  <small class="form-text text-muted">Podés seleccionar varios tratamientos manteniendo presionada CTRL o SHIFT.</small>
 </div>
+
 
     <!-- Motivo de consulta -->
     <div class="mb-3">

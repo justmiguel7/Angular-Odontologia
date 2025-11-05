@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,6 @@ import { TurnoService } from '../../service/turno.service';
 import { DetalleDentalService } from '../../service/detalle-dental.service';
 import { AuthService } from '../../service/auth.service';
 import { PlandentalService } from '../../service/plandental.service';
-import Swal from 'sweetalert2';
 import { DetalleDental } from '../../modelo/Diente';
 
 @Component({
@@ -132,7 +132,7 @@ guardarHistorial() {
     dnipaciente: turnoSeleccionado.dnipaciente,
     dniodontologo: this.dniOdontologo,
     idturno: Number(this.form.idturno),
-    idtratamiento: this.form.idtratamiento ?? 0,
+  idtratamientos: this.form.idtratamientos || [], // ✅ ahora es lista
     motivodeconsulta: this.form.motivodeconsulta,
     fechadeconsulta: new Date().toISOString(),
     diagnostico: this.form.diagnostico,
@@ -172,7 +172,7 @@ const detalleEnviar: DetalleDental = {
       // 🔄 Resetear formulario
       this.form = {
         idturno: null,
-        idtratamiento: null,
+        idtratamientos: [],
         motivodeconsulta: '',
         diagnostico: '',
         observaciones: '',
